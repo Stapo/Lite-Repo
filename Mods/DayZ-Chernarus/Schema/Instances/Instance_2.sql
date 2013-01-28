@@ -1,7 +1,7 @@
 DROP PROCEDURE IF EXISTS `pSpawn`;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pSpawn`()
 BEGIN
-   DECLARE bSpawned        TINYINT(1) DEFAULT 0;
+    DECLARE bSpawned        TINYINT(1) DEFAULT 0;
     DECLARE iLID                INT DEFAULT 0;
  
     WHILE (bSpawned = 0) DO
@@ -9,7 +9,7 @@ BEGIN
         SET iLID = LAST_INSERT_ID();
  
         INSERT INTO object_data (ObjectUID, Instance, Classname, Damage, CharacterID, Worldspace, Inventory, Hitpoints, Fuel, Datestamp)
-        SELECT ot.ObjectUID, '1', ot.Classname, ot.Damage, '0', ot.Worldspace, '[]', ot.Hitpoints, '0.05', SYSDATE()
+        SELECT ot.ObjectUID, '2', ot.Classname, ot.Damage, '0', ot.Worldspace, '[]', ot.Hitpoints, '0.05', SYSDATE()
             FROM (SELECT oc.Classname, oc.Chance, oc.MaxNum, oc.Damage, oc.Hitpoints, os.ObjectUID, os.Worldspace
                 FROM object_classes AS oc
                 INNER JOIN object_spawns AS os
