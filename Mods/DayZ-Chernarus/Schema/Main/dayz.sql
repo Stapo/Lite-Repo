@@ -1,9 +1,6 @@
 SET FOREIGN_KEY_CHECKS=0;
 
--- ----------------------------
--- Table structure for `character_data`
--- ----------------------------
-DROP TABLE IF EXISTS `character_data`;
+
 CREATE TABLE `character_data` (
   `CharacterID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `PlayerUID` varchar(16) NOT NULL DEFAULT '',
@@ -30,28 +27,16 @@ CREATE TABLE `character_data` (
   PRIMARY KEY (`CharacterID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of character_data
--- ----------------------------
 
--- ----------------------------
--- Table structure for `dbver`
--- ----------------------------
-DROP TABLE IF EXISTS `dbver`;
 CREATE TABLE `dbver` (
   `version` mediumint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`version`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of dbver
--- ----------------------------
+
 INSERT INTO `dbver` VALUES ('123');
 
--- ----------------------------
--- Table structure for `object_classes`
--- ----------------------------
-DROP TABLE IF EXISTS `object_classes`;
+
 CREATE TABLE `object_classes` (
   `Classname` varchar(32) NOT NULL DEFAULT '',
   `Chance` varchar(4) NOT NULL DEFAULT '0',
@@ -61,14 +46,7 @@ CREATE TABLE `object_classes` (
   PRIMARY KEY (`Classname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of object_classes
--- ----------------------------
 
--- ----------------------------
--- Table structure for `object_data`
--- ----------------------------
-DROP TABLE IF EXISTS `object_data`;
 CREATE TABLE `object_data` (
   `ObjectID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ObjectUID` varchar(20) DEFAULT NULL,
@@ -84,14 +62,7 @@ CREATE TABLE `object_data` (
   PRIMARY KEY (`ObjectID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=160 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
--- ----------------------------
--- Records of object_data
--- ----------------------------
 
--- ----------------------------
--- Table structure for `object_spawns`
--- ----------------------------
-DROP TABLE IF EXISTS `object_spawns`;
 CREATE TABLE `object_spawns` (
   `ObjectUID` varchar(20) NOT NULL DEFAULT '',
   `Classname` varchar(32) DEFAULT NULL,
@@ -100,14 +71,7 @@ CREATE TABLE `object_spawns` (
   PRIMARY KEY (`ObjectUID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
--- ----------------------------
--- Records of object_spawns
--- ----------------------------
 
--- ----------------------------
--- Table structure for `player_data`
--- ----------------------------
-DROP TABLE IF EXISTS `player_data`;
 CREATE TABLE `player_data` (
   `PlayerUID` varchar(20) NOT NULL DEFAULT '',
   `PlayerName` varchar(24) NOT NULL DEFAULT '',
@@ -115,14 +79,7 @@ CREATE TABLE `player_data` (
   PRIMARY KEY (`PlayerUID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of player_data
--- ----------------------------
 
--- ----------------------------
--- Table structure for `player_login`
--- ----------------------------
-DROP TABLE IF EXISTS `player_login`;
 CREATE TABLE `player_login` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `PlayerUID` varchar(20) DEFAULT '',
@@ -132,15 +89,7 @@ CREATE TABLE `player_login` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of player_login
--- ----------------------------
 
--- ----------------------------
--- Procedure structure for `pCleanup`
--- ----------------------------
-DROP PROCEDURE IF EXISTS `pCleanup`;
-DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pCleanup`()
 BEGIN
 
@@ -195,14 +144,9 @@ BEGIN
 			AND DATE(Datestamp) < CURDATE() - INTERVAL 5 DAY;
 
 END
-;;
-DELIMITER ;
+;
 
--- ----------------------------
--- Procedure structure for `pCleanupOOB`
--- ----------------------------
-DROP PROCEDURE IF EXISTS `pCleanupOOB`;
-DELIMITER ;;
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pCleanupOOB`()
 BEGIN
  
@@ -258,14 +202,8 @@ BEGIN
     END WHILE;
  
 END
-;;
-DELIMITER ;
+;
 
--- ----------------------------
--- Procedure structure for `pFixMaxNum`
--- ----------------------------
-DROP PROCEDURE IF EXISTS `pFixMaxNum`;
-DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pFixMaxNum`()
 BEGIN
 
@@ -282,77 +220,8 @@ BEGIN
 	END WHILE;
 
 END
-;;
-DELIMITER ;
+;
 
--- ----------------------------
--- Procedure structure for `pMain`
--- ----------------------------
-DROP PROCEDURE IF EXISTS `pMain`;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pMain`()
-BEGIN
-
-	DECLARE iSpawnNumVeh SMALLINT(3) DEFAULT 0;		
-	
-	CALL pCleanup();
-	CALL pFixMaxNum;
-
-	SELECT SUM(MaxNum) FROM object_classes INTO @iMaxNumTotal;
-	IF (iSpawnNumVeh > @iMaxNumTotal) THEN
-		SET iSpawnNumVeh = @iMaxNumTotal;
-	END IF;
-
-	WHILE (fGetVehCount() < iSpawnNumVeh) DO
-		CALL pSpawn();
-	END WHILE;
-
-END
-;;
-DELIMITER ;
-
--- ----------------------------
--- Procedure structure for `pSpawn`
--- ----------------------------
-DROP PROCEDURE IF EXISTS `pSpawn`;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pSpawn`()
-BEGIN
-    DECLARE bSpawned        TINYINT(1) DEFAULT 0;
-    DECLARE iLID                INT DEFAULT 0;
- 
-    WHILE (bSpawned = 0) DO
- 
-        SET iLID = LAST_INSERT_ID();
- 
-        INSERT INTO object_data (ObjectUID, Instance, Classname, Damage, CharacterID, Worldspace, Inventory, Hitpoints, Fuel, Datestamp)
-        SELECT ot.ObjectUID, '1', ot.Classname, ot.Damage, '0', ot.Worldspace, '[]', ot.Hitpoints, '0.05', SYSDATE()
-            FROM (SELECT oc.Classname, oc.Chance, oc.MaxNum, oc.Damage, oc.Hitpoints, os.ObjectUID, os.Worldspace
-                FROM object_classes AS oc
-                INNER JOIN object_spawns AS os
-                ON oc.Classname = os.Classname
-                ORDER BY RAND()) AS ot
-            WHERE NOT EXISTS (SELECT od.ObjectUID
-                            FROM object_data AS od
-                            WHERE ot.ObjectUID = od.ObjectUID)
-            AND fGetClassCount(ot.Classname) < ot.MaxNum
-            AND fGetSpawnFromChance(ot.Chance) = 1
-            LIMIT 1;
-     
-            IF (LAST_INSERT_ID() <> iLID) THEN
-                SET bSpawned = 1;
-            END IF;
-     
-    END WHILE;
-END
-;;
-DELIMITER ;
-
--- ----------------------------
--- Function structure for `fGetClassCount`
--- ----------------------------
-DROP FUNCTION IF EXISTS `fGetClassCount`;
-DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` FUNCTION `fGetClassCount`(`clname` varchar(32)) RETURNS smallint(3)
     READS SQL DATA
 BEGIN
@@ -366,14 +235,9 @@ BEGIN
 
 	RETURN iClassCount;
 END
-;;
-DELIMITER ;
+;
 
--- ----------------------------
--- Function structure for `fGetSpawnFromChance`
--- ----------------------------
-DROP FUNCTION IF EXISTS `fGetSpawnFromChance`;
-DELIMITER ;;
+
 CREATE DEFINER=`root`@`localhost` FUNCTION `fGetSpawnFromChance`(`chance` double) RETURNS tinyint(1)
     NO SQL
 BEGIN
@@ -387,14 +251,9 @@ BEGIN
 	RETURN bspawn;
 
 END
-;;
-DELIMITER ;
+;
 
--- ----------------------------
--- Function structure for `fGetVehCount`
--- ----------------------------
-DROP FUNCTION IF EXISTS `fGetVehCount`;
-DELIMITER ;;
+
 CREATE DEFINER=`root`@`localhost` FUNCTION `fGetVehCount`() RETURNS smallint(3)
     READS SQL DATA
 BEGIN
@@ -413,5 +272,4 @@ BEGIN
 
 	RETURN iVehCount;
 END
-;;
-DELIMITER ;
+;
