@@ -1,6 +1,3 @@
-SET FOREIGN_KEY_CHECKS=0;
-
-
 CREATE TABLE `character_data` (
   `CharacterID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `PlayerUID` varchar(16) NOT NULL DEFAULT '',
@@ -27,15 +24,12 @@ CREATE TABLE `character_data` (
   PRIMARY KEY (`CharacterID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
-
 CREATE TABLE `dbver` (
   `version` mediumint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`version`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-
 INSERT INTO `dbver` VALUES ('123');
-
 
 CREATE TABLE `object_classes` (
   `Classname` varchar(32) NOT NULL DEFAULT '',
@@ -45,7 +39,6 @@ CREATE TABLE `object_classes` (
   `Hitpoints` varchar(999) NOT NULL DEFAULT '[]',
   PRIMARY KEY (`Classname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
 
 CREATE TABLE `object_data` (
   `ObjectID` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -62,7 +55,6 @@ CREATE TABLE `object_data` (
   PRIMARY KEY (`ObjectID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=160 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
-
 CREATE TABLE `object_spawns` (
   `ObjectUID` varchar(20) NOT NULL DEFAULT '',
   `Classname` varchar(32) DEFAULT NULL,
@@ -71,14 +63,12 @@ CREATE TABLE `object_spawns` (
   PRIMARY KEY (`ObjectUID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
-
 CREATE TABLE `player_data` (
   `PlayerUID` varchar(20) NOT NULL DEFAULT '',
   `PlayerName` varchar(24) NOT NULL DEFAULT '',
   `PlayerSex` int(1) DEFAULT NULL,
   PRIMARY KEY (`PlayerUID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
 
 CREATE TABLE `player_login` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -88,7 +78,6 @@ CREATE TABLE `player_login` (
   `Datestamp` datetime DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
-
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pCleanup`()
 BEGIN
@@ -145,7 +134,6 @@ BEGIN
 
 END
 ;
-
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pCleanupOOB`()
 BEGIN
@@ -237,7 +225,6 @@ BEGIN
 END
 ;
 
-
 CREATE DEFINER=`root`@`localhost` FUNCTION `fGetSpawnFromChance`(`chance` double) RETURNS tinyint(1)
     NO SQL
 BEGIN
@@ -252,7 +239,6 @@ BEGIN
 
 END
 ;
-
 
 CREATE DEFINER=`root`@`localhost` FUNCTION `fGetVehCount`() RETURNS smallint(3)
     READS SQL DATA
