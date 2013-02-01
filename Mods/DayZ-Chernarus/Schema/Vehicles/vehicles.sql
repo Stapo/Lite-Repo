@@ -66,7 +66,8 @@ INSERT INTO `object_classes` VALUES ('datsun1_civil_3_open', '0.60', '3', '0.05'
 INSERT INTO `object_classes` VALUES ('tractor', '0.59', '2', '0.05', '[[\"motor\",1],[\"sklo predni P\",0.0275828],[\"karoserie\",1],[\"palivo\",0.00205799],[\"wheel_2_1_steering\",0.0156045],[\"wheel_1_3_steering\",1],[\"wheel_2_3_steering\",0.0161143],[\"wheel_1_2_steering\",0.0082898],[\"glass1\",1],[\"glass3\",0.0224173]]');
 INSERT INTO `object_classes` VALUES ('UH1H_DZ', '0.61', '3', '0.05', '[[\"glass1\",1],[\"glass2\",1],[\"glass3\",1],[\"glass4\",1],[\"glass5\",1],[\"NEtrup\",1.1998],[\"motor\",1],[\"elektronika\",1],[\"mala vrtule\",1],[\"velka vrtule\",1],[\"munice\",1.07084],[\"sklo predni P\",1.04818],[\"sklo predni L\",1.11816],[\"glass6\",1.0402]]');
 
-
+DROP PROCEDURE IF EXISTS `pMain`;
+DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pMain`()
 BEGIN
 
@@ -85,4 +86,5 @@ BEGIN
 	END WHILE;
 
 END
-;
+;;
+DELIMITER ;

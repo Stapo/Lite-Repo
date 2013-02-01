@@ -1,4 +1,6 @@
+
 DROP PROCEDURE IF EXISTS `pSpawn`;
+DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pSpawn`()
 BEGIN
     DECLARE bSpawned        TINYINT(1) DEFAULT 0;
@@ -28,4 +30,5 @@ BEGIN
      
     END WHILE;
 END
-;
+;;
+DELIMITER ;
