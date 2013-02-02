@@ -171,7 +171,7 @@ BEGIN
             END IF;
         END IF;
  
-        IF (intWest > 0 OR intNorth > 15360) THEN
+        IF (intWest > 0 OR intNorth > 12000) THEN
             DELETE FROM object_data
                 WHERE ObjectUID = @rsObjectUID;
         END IF;

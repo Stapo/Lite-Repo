@@ -4,7 +4,7 @@ DELIMITER ;;
 CREATE PROCEDURE `pMain`()
 BEGIN
 
-	DECLARE iSpawnNumVeh SMALLINT(3) DEFAULT 366;		
+	DECLARE iSpawnNumVeh SMALLINT(3) DEFAULT 10;		
 	
 	CALL pCleanup();
 	CALL pFixMaxNum;
@@ -171,7 +171,7 @@ BEGIN
             END IF;
         END IF;
  
-        IF (intWest > 0 OR intNorth > 25600) THEN
+        IF (intWest > 0 OR intNorth > 15360) THEN
             DELETE FROM object_data
                 WHERE ObjectUID = @rsObjectUID;
         END IF;
