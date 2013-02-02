@@ -44,8 +44,6 @@ INSERT INTO `object_spawns` VALUES ('408', 'MMT_USMC', '[239,[8105.26,5678.54,0.
 INSERT INTO `object_spawns` VALUES ('409', 'MMT_USMC', '[68,[6093.32,7728.83,0.001]]', null);
 INSERT INTO `object_spawns` VALUES ('500', 'An2_1_TK_CIV_EP1', '[88,[4067.36,2192.8,0.001]]', null);
 INSERT INTO `object_spawns` VALUES ('501', 'An2_1_TK_CIV_EP1', '[331,[7283.27,2208.09,0.001]]', null);
-
-
 INSERT INTO `object_classes` VALUES ('ATV_US_EP1', '0.7', '2', '0.05', '[[\"motor\",1],[\"palivo\",0.368047],[\"wheel_1_1_steering\",0.331809],[\"wheel_1_2_steering\",1],[\"wheel_2_1_steering\",0.0473658],[\"wheel_2_2_steering\",0.332376],[\"karoserie\",0.355141],[\"wheel_1_3_steering\",0.0401988],[\"wheel_2_3_steering\",1]]');
 INSERT INTO `object_classes` VALUES ('PBX', '0.7', '1', '0.05', '[]');
 INSERT INTO `object_classes` VALUES ('Ka137_PMC', '0.40', '4', '0.05', '[]');
@@ -65,26 +63,3 @@ INSERT INTO `object_classes` VALUES ('Old_bike_TK_INS_EP1', '0.67', '0', '0.05',
 INSERT INTO `object_classes` VALUES ('datsun1_civil_3_open', '0.60', '3', '0.05', '[[\"motor\",0.8],[\"karoserie\",1],[\"palivo\",0.8],[\"wheel_1_1_steering\",1],[\"wheel_2_1_steering\",1],[\"wheel_1_2_steering\",1],[\"wheel_2_2_steering\",1]]');
 INSERT INTO `object_classes` VALUES ('tractor', '0.59', '2', '0.05', '[[\"motor\",1],[\"sklo predni P\",0.0275828],[\"karoserie\",1],[\"palivo\",0.00205799],[\"wheel_2_1_steering\",0.0156045],[\"wheel_1_3_steering\",1],[\"wheel_2_3_steering\",0.0161143],[\"wheel_1_2_steering\",0.0082898],[\"glass1\",1],[\"glass3\",0.0224173]]');
 INSERT INTO `object_classes` VALUES ('UH1H_DZ', '0.61', '3', '0.05', '[[\"glass1\",1],[\"glass2\",1],[\"glass3\",1],[\"glass4\",1],[\"glass5\",1],[\"NEtrup\",1.1998],[\"motor\",1],[\"elektronika\",1],[\"mala vrtule\",1],[\"velka vrtule\",1],[\"munice\",1.07084],[\"sklo predni P\",1.04818],[\"sklo predni L\",1.11816],[\"glass6\",1.0402]]');
-
-DROP PROCEDURE IF EXISTS `pMain`;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pMain`()
-BEGIN
-
-	DECLARE iSpawnNumVeh SMALLINT(3) DEFAULT 46;		
-	
-	CALL pCleanup();
-	CALL pFixMaxNum;
-
-	SELECT SUM(MaxNum) FROM object_classes INTO @iMaxNumTotal;
-	IF (iSpawnNumVeh > @iMaxNumTotal) THEN
-		SET iSpawnNumVeh = @iMaxNumTotal;
-	END IF;
-
-	WHILE (fGetVehCount() < iSpawnNumVeh) DO
-		CALL pSpawn();
-	END WHILE;
-
-END
-;;
-DELIMITER ;
