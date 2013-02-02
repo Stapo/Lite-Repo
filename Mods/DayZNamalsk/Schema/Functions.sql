@@ -1,7 +1,7 @@
 
 DROP PROCEDURE IF EXISTS `pMain`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pMain`()
+CREATE PROCEDURE `pMain`()
 BEGIN
 
 	DECLARE iSpawnNumVeh SMALLINT(3) DEFAULT 35;		
@@ -25,7 +25,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `pSpawn`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pSpawn`()
+CREATE PROCEDURE `pSpawn`()
 BEGIN
     DECLARE bSpawned        TINYINT(1) DEFAULT 0;
     DECLARE iLID                INT DEFAULT 0;
@@ -60,7 +60,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `pCleanup`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pCleanup`()
+CREATE PROCEDURE `pCleanup`()
 BEGIN
 
 	CALL pCleanupOOB();
@@ -126,7 +126,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `pCleanupOOB`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pCleanupOOB`()
+CREATE PROCEDURE `pCleanupOOB`()
 BEGIN
  
     DECLARE intLineCount    INT DEFAULT 0;
@@ -187,7 +187,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS `pFixMaxNum`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pFixMaxNum`()
+CREATE PROCEDURE `pFixMaxNum`()
 BEGIN
 
 	DECLARE iCounter INT DEFAULT 0;
@@ -209,7 +209,7 @@ DELIMITER ;
 
 DROP FUNCTION IF EXISTS `fGetClassCount`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `fGetClassCount`(`clname` varchar(32)) RETURNS smallint(3)
+CREATE FUNCTION `fGetClassCount`(`clname` varchar(32)) RETURNS smallint(3)
     READS SQL DATA
 BEGIN
 
@@ -228,7 +228,7 @@ DELIMITER ;
 
 DROP FUNCTION IF EXISTS `fGetSpawnFromChance`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `fGetSpawnFromChance`(`chance` double) RETURNS tinyint(1)
+CREATE FUNCTION `fGetSpawnFromChance`(`chance` double) RETURNS tinyint(1)
     NO SQL
 BEGIN
 
@@ -247,7 +247,7 @@ DELIMITER ;
 
 DROP FUNCTION IF EXISTS `fGetVehCount`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `fGetVehCount`() RETURNS smallint(3)
+CREATE FUNCTION `fGetVehCount`() RETURNS smallint(3)
     READS SQL DATA
 BEGIN
 
