@@ -4,7 +4,7 @@ DELIMITER ;;
 CREATE PROCEDURE `pMain`()
 BEGIN
 
-	DECLARE iSpawnNumVeh SMALLINT(3) DEFAULT 46;		
+	DECLARE iSpawnNumVeh SMALLINT(3) DEFAULT 50;		
 	
 	CALL pCleanup();
 	CALL pFixMaxNum;
