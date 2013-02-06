@@ -4,7 +4,7 @@ DELIMITER ;;
 CREATE PROCEDURE `pMain`()
 BEGIN
 
-	DECLARE iSpawnNumVeh SMALLINT(3) DEFAULT 34;		
+	DECLARE iSpawnNumVeh SMALLINT(3) DEFAULT 50;		
 	
 	CALL pCleanup();
 	CALL pFixMaxNum;
@@ -73,7 +73,7 @@ BEGIN
 		FROM object_data
 		WHERE DATE(Datestamp) < CURDATE() - INTERVAL 8 DAY
 			AND Classname != 'dummy'
-			AND Classname != 'tent2017'
+			AND Classname != 'TentStorage'
 			AND Classname != 'Hedgehog_DZ'
 			AND Classname != 'Wire_cat1'
 			AND Classname != 'Sandbag1_DZ'
@@ -82,20 +82,20 @@ BEGIN
 	DELETE
 		FROM object_data
 		USING object_data, character_data
-		WHERE object_data.Classname = 'tent2017'
+		WHERE object_data.Classname = 'TentStorage'
 			AND object_data.CharacterID = character_data.CharacterID
 			AND character_data.Alive = 0
 			AND DATE(character_data.Datestamp) < CURDATE() - INTERVAL 4 DAY;
 
 	DELETE
 		FROM object_data
-		WHERE Classname = 'tent2017'
+		WHERE Classname = 'TentStorage'
 			AND DATE(Datestamp) < CURDATE() - INTERVAL 8 DAY
 			AND Inventory = '[[[],[]],[[],[]],[[],[]]]';			
 	
 	DELETE
 		FROM object_data
-		WHERE Classname = 'tent2017'
+		WHERE Classname = 'TentStorage'
 			AND DATE(Datestamp) < CURDATE() - INTERVAL 8 DAY
 			AND Inventory = '[]';		
 
@@ -257,7 +257,7 @@ BEGIN
 		INTO iVehCount
 		FROM object_data 
 		WHERE Classname != 'dummy'
-			AND Classname != 'tent2017'  
+			AND Classname != 'TentStorage'  
 			AND Classname != 'Hedgehog_DZ'	
 			AND Classname != 'Wire_cat1'		
 			AND Classname != 'Sandbag1_DZ'	
