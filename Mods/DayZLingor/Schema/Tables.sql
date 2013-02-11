@@ -55,6 +55,10 @@ INSERT INTO `object_classes` VALUES ('UAZ_Unarmed_TK_EP1', '0.6', 2, '0.05', '[[
 INSERT INTO `object_classes` VALUES ('Skoda', '0.66', 1, '0.05', '[[\"motor\",0.8],[\"karoserie\",1],[\"palivo\",0.8],[\"wheel_1_1_steering\",1],[\"wheel_2_1_steering\",1],[\"wheel_1_2_steering\",1],[\"wheel_2_2_steering\",1]]');
 INSERT INTO `object_classes` VALUES ('UH1H_DZ', '0.7', 2, '0.05', '[[\"glass1\",1],[\"glass2\",1],[\"glass3\",1],[\"glass4\",1],[\"glass5\",1],[\"NEtrup\",1.1998],[\"motor\",1],[\"elektronika\",1],[\"mala vrtule\",1],[\"velka vrtule\",1],[\"munice\",1.07084],[\"sklo predni P\",1.04818],[\"sklo predni L\",1.11816],[\"glass6\",1.0402]]');
 INSERT INTO `object_classes` VALUES ('TT650_Ins', '1.0', 1, '0.05', '[]');
+INSERT INTO `object_classes` VALUES ('AH6X_DZ', '0.35', 2, '0.05', '[[\"glass1\",1],[\"glass2\",1],[\"glass3\",1],[\"glass4\",1],[\"glass5\",1],[\"NEtrup\",1.1998],[\"motor\",1],[\"elektronika\",1],[\"mala vrtule\",1],[\"velka vrtule\",1],[\"munice\",1.07084],[\"sklo predni P\",1.04818],[\"sklo predni L\",1.11816],[\"glass6\",1.0402]]');
+INSERT INTO `object_classes` VALUES ('MH6J_DZ', '0.65', 2, '0.05', '[[\"glass1\",1],[\"glass2\",1],[\"glass3\",1],[\"glass4\",1],[\"glass5\",1],[\"NEtrup\",1.1998],[\"motor\",1],[\"elektronika\",1],[\"mala vrtule\",1],[\"velka vrtule\",1],[\"munice\",1.07084],[\"sklo predni P\",1.04818],[\"sklo predni L\",1.11816],[\"glass6\",1.0402]]');
+INSERT INTO `object_classes` VALUES ('Mi17_DZ', '0.35', 1, '0.05', '[[\"glass1\",1],[\"glass2\",1],[\"glass3\",1],[\"glass4\",1],[\"glass5\",1],[\"NEtrup\",1.1998],[\"motor\",1],[\"elektronika\",1],[\"mala vrtule\",1],[\"velka vrtule\",1],[\"munice\",1.07084],[\"sklo predni P\",1.04818],[\"sklo predni L\",1.11816],[\"glass6\",1.0402]]');
+INSERT INTO `object_classes` VALUES ('AN2_DZ', '0.5', 1, '0.05', '[]');
 INSERT INTO `object_classes` VALUES ('TT650_TK_EP1', '0.5', 1, '0.05', '[]');
 INSERT INTO `object_classes` VALUES ('TT650_TK_CIV_EP1', '0.7', 3, '0.05', '[]');
 INSERT INTO `object_classes` VALUES ('UralCivil2', '0.72', 1, '0.05', '[[\"motor\",0.8],[\"karoserie\",1],[\"palivo\",0.8],[\"wheel_1_1_steering\",1],[\"wheel_2_1_steering\",1],[\"wheel_1_2_steering\",1],[\"wheel_2_2_steering\",1]]');
@@ -70,6 +74,7 @@ INSERT INTO `object_classes` VALUES ('S1203_TK_CIV_EP1', '0.65', 4, '0.05', '[[\
 INSERT INTO `object_classes` VALUES ('V3S_Civ', '0.55', 1, '0.05', '[[\"motor\",0.8],[\"karoserie\",1],[\"palivo\",0.8],[\"wheel_1_1_steering\",1],[\"wheel_2_1_steering\",1],[\"wheel_1_2_steering\",1],[\"wheel_2_2_steering\",1]]');
 INSERT INTO `object_classes` VALUES ('Fishing_Boat', '0.95', 2, '0.05', '[]');
 INSERT INTO `object_classes` VALUES ('PBX', '0.75', 1, '0.05', '[]');
+INSERT INTO `object_classes` VALUES ('MV22_DZ', '0.75', 1, '0.05', '[]');
 INSERT INTO `object_classes` VALUES ('Smallboat_1', '1.0', 2, '0.05', '[]');
 INSERT INTO `object_classes` VALUES ('Volha_1_TK_CIV_EP1', '0.70', 3, '0.05', '[[\"motor\",0.8],[\"karoserie\",1],[\"palivo\",0.8],[\"wheel_1_1_steering\",1],[\"wheel_2_1_steering\",1],[\"wheel_1_2_steering\",1],[\"wheel_2_2_steering\",1]]');
 INSERT INTO `object_classes` VALUES ('car_sedan', '0.90', 1, '0.05', '[[\"motor\",0.8],[\"karoserie\",1],[\"palivo\",0.8],[\"wheel_1_1_steering\",1],[\"wheel_2_1_steering\",1],[\"wheel_1_2_steering\",1],[\"wheel_2_2_steering\",1]]');
@@ -164,6 +169,16 @@ INSERT INTO `object_spawns` VALUES ('137', 'car_sedan', '[222,[9120.468,8667.882
 INSERT INTO `object_spawns` VALUES ('138', 'Fishing_Boat', '[273,[8842.5,921.916,0.00130701]]', NULL);
 INSERT INTO `object_spawns` VALUES ('139', 'UAZ_Unarmed_TK_EP1', '[249,[7563.33,1693.72,0.00143909]]', NULL);
 INSERT INTO `object_spawns` VALUES ('140', 'Fishing_Boat', '[195,[6800.51,2828.05,0.00150663]]', NULL);
+INSERT INTO `object_spawns` VALUES ('141', 'MV22_DZ', '[90,[5986.6792,7027.0684,4.863739e-005]]', NULL);
+INSERT INTO `object_spawns` VALUES ('142', 'AN2_DZ', '[0,[3055.7537,6474.4546,-0.70897663]]', NULL);
+INSERT INTO `object_spawns` VALUES ('143', 'AN2_DZ', '[180,[4318.3994,1878.7593,-0.66435003]]', NULL);
+INSERT INTO `object_spawns` VALUES ('144', 'AH6X_DZ', '[180,[1301.7004,1455.2246,-4.7683716e-006]]', NULL);
+INSERT INTO `object_spawns` VALUES ('145', 'AH6X_DZ', '[0,[6081.769,1671.0074,-1.0490417e-005]]', NULL);
+INSERT INTO `object_spawns` VALUES ('146', 'AH6X_DZ', '[150,[5508.1572,5060.7256,-1.2397766e-005]]', NULL);
+INSERT INTO `object_spawns` VALUES ('147', 'MH6J_DZ', '[180,[7519.2031,8273.2949,-2.1934509e-005]]', NULL);
+INSERT INTO `object_spawns` VALUES ('148', 'MH6J_DZ', '[90,[6952.7598,6430.978,9.5367432e-006]]', NULL);
+INSERT INTO `object_spawns` VALUES ('149', 'MH6J_DZ', '[90,[4183.8716,7572.7285,1.1444092e-005]]', NULL);
+INSERT INTO `object_spawns` VALUES ('150', 'Mi17_DZ', '[75,[3064.6106,7974.1719,-0.51635265]]', NULL);
 
 DROP TABLE IF EXISTS `player_data`;
 CREATE TABLE `player_data` (
