@@ -1,6 +1,6 @@
 
-DROP TABLE IF EXISTS `character_data`;
-CREATE TABLE `character_data` (
+DROP TABLE IF EXISTS `Character_DATA`;
+CREATE TABLE `Character_DATA` (
   `CharacterID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `PlayerUID` varchar(16) NOT NULL DEFAULT '',
   `Alive` tinyint(1) NOT NULL DEFAULT '1',
@@ -55,8 +55,8 @@ INSERT INTO `object_classes` VALUES ('UH1H_DZ', '0.70', 2, '0.0354331', '[[\"gla
 INSERT INTO `object_classes` VALUES ('Ikarus', '0.70', 2, '0.0354331', '[[\"motor\",0.160118],[\"karoserie\",0.078272],[\"wheel_1_1_steering\",1],[\"wheel_2_1_steering\",1],[\"wheel_1_2_steering\",1],[\"glass1\",1],[\"glass2\",1],[\"glass3\",1],[\"glass4\",0.0617056]]');
 INSERT INTO `object_classes` VALUES ('Old_bike_TK_CIV_EP1', '0.70', 10, '0', '[]');
 
-DROP TABLE IF EXISTS `object_data`;
-CREATE TABLE `object_data` (
+DROP TABLE IF EXISTS `Object_DATA`;
+CREATE TABLE `Object_DATA` (
   `ObjectID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ObjectUID` varchar(20) DEFAULT NULL,
   `Instance` varchar(4) DEFAULT NULL,
@@ -115,16 +115,16 @@ INSERT INTO `object_spawns` VALUES ('176', 'Old_bike_TK_CIV_EP1', '[223,[7903.87
 INSERT INTO `object_spawns` VALUES ('177', 'Old_bike_TK_CIV_EP1', '[182,[8346.94,2458.27,0.0158215]]', NULL);
 INSERT INTO `object_spawns` VALUES ('178', 'V3S_Civ', '[84,[8101.6929,2026.0935,0.0254517]]', NULL);
 
-DROP TABLE IF EXISTS `player_data`;
-CREATE TABLE `player_data` (
+DROP TABLE IF EXISTS `Player_DATA`;
+CREATE TABLE `Player_DATA` (
   `PlayerUID` varchar(20) NOT NULL DEFAULT '',
   `PlayerName` varchar(24) NOT NULL DEFAULT '',
   `PlayerSex` int(1) DEFAULT NULL,
   PRIMARY KEY (`PlayerUID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `player_login`;
-CREATE TABLE `player_login` (
+DROP TABLE IF EXISTS `Player_LOGIN`;
+CREATE TABLE `Player_LOGIN` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `PlayerUID` varchar(20) DEFAULT '',
   `CharacterID` int(10) DEFAULT NULL,

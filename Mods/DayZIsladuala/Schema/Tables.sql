@@ -1,6 +1,6 @@
 
-DROP TABLE IF EXISTS `character_data`;
-CREATE TABLE `character_data` (
+DROP TABLE IF EXISTS `Character_DATA`;
+CREATE TABLE `Character_DATA` (
   `CharacterID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `PlayerUID` varchar(16) NOT NULL DEFAULT '',
   `Alive` tinyint(1) NOT NULL DEFAULT '1',
@@ -65,8 +65,8 @@ INSERT INTO `object_classes` VALUES ('tractor', '0.59', '2', '0.05', '[[\"motor\
 INSERT INTO `object_classes` VALUES ('UH1H_DZ', '0.61', '3', '0.05', '[[\"glass1\",1],[\"glass2\",1],[\"glass3\",1],[\"glass4\",1],[\"glass5\",1],[\"NEtrup\",1.1998],[\"motor\",1],[\"elektronika\",1],[\"mala vrtule\",1],[\"velka vrtule\",1],[\"munice\",1.07084],[\"sklo predni P\",1.04818],[\"sklo predni L\",1.11816],[\"glass6\",1.0402]]');
 
 
-DROP TABLE IF EXISTS `object_data`;
-CREATE TABLE `object_data` (
+DROP TABLE IF EXISTS `Object_DATA`;
+CREATE TABLE `Object_DATA` (
   `ObjectID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ObjectUID` varchar(20) DEFAULT NULL,
   `Instance` varchar(4) DEFAULT NULL,
@@ -137,16 +137,16 @@ INSERT INTO `object_spawns` VALUES ('409', 'MMT_USMC', '[68,[6093.32,7728.83,0.0
 INSERT INTO `object_spawns` VALUES ('500', 'An2_1_TK_CIV_EP1', '[88,[4067.36,2192.8,0.001]]', null);
 INSERT INTO `object_spawns` VALUES ('501', 'An2_1_TK_CIV_EP1', '[331,[7283.27,2208.09,0.001]]', null);
 
-DROP TABLE IF EXISTS `player_data`;
-CREATE TABLE `player_data` (
+DROP TABLE IF EXISTS `Player_DATA`;
+CREATE TABLE `Player_DATA` (
   `PlayerUID` varchar(20) NOT NULL DEFAULT '',
   `PlayerName` varchar(24) NOT NULL DEFAULT '',
   `PlayerSex` int(1) DEFAULT NULL,
   PRIMARY KEY (`PlayerUID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `player_login`;
-CREATE TABLE `player_login` (
+DROP TABLE IF EXISTS `Player_LOGIN`;
+CREATE TABLE `Player_LOGIN` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `PlayerUID` varchar(20) DEFAULT '',
   `CharacterID` int(10) DEFAULT NULL,

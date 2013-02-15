@@ -1,6 +1,6 @@
 
-DROP TABLE IF EXISTS `character_data`;
-CREATE TABLE `character_data` (
+DROP TABLE IF EXISTS `Character_DATA`;
+CREATE TABLE `Character_DATA` (
   `CharacterID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `PlayerUID` varchar(16) NOT NULL DEFAULT '',
   `Alive` tinyint(1) NOT NULL DEFAULT '1',
@@ -87,8 +87,8 @@ INSERT INTO `object_classes` VALUES ('AW159_Lynx_DZC', '0.30', 1, '0.05', '[[\"g
 INSERT INTO `object_classes` VALUES ('MH6J_DZ', '0.30', 1, '0.05', '[[\"glass1\",1],[\"glass2\",0.0393701],[\"glass3\",1],[\"glass4\",0.0520385],[\"motor\",0.8],[\"elektronika\",0.8],[\"mala vrtule\",0.8],[\"velka vrtule\",0.8],[\"sklo predni P\",1],[\"sklo predni L\",1]]');
 INSERT INTO `object_classes` VALUES ('SkodaBlue', '0.30', 1, '0.05', '[[\"karoserie\",1],[\"palivo\",0.397638],[\"wheel_1_1_steering\",1],[\"wheel_2_1_steering\",1],[\"wheel_1_2_steering\",1],[\"wheel_2_2_steering\",1],[\"glass2\",0.254926],[\"glass3\",0.412207]]');
 
-DROP TABLE IF EXISTS `object_data`;
-CREATE TABLE `object_data` (
+DROP TABLE IF EXISTS `Object_DATA`;
+CREATE TABLE `Object_DATA` (
   `ObjectID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ObjectUID` varchar(20) DEFAULT NULL,
   `Instance` varchar(4) DEFAULT NULL,
@@ -177,16 +177,16 @@ INSERT INTO `object_spawns` VALUES ('25', 'MH6J_DZ', '[-19,[11702.963,5788.7017,
 INSERT INTO `object_spawns` VALUES ('26', 'SkodaBlue', '[161,[6020.3052,2740.155,-9.5367432e-006]]', 'TBA');
 INSERT INTO `object_spawns` VALUES ('27', 'kpfs_golf_p', '[-124,[6824.5977,2604.1848,-2.0980835e-005]]', 'TBA');
 
-DROP TABLE IF EXISTS `player_data`;
-CREATE TABLE `player_data` (
+DROP TABLE IF EXISTS `Player_DATA`;
+CREATE TABLE `Player_DATA` (
   `PlayerUID` varchar(20) NOT NULL DEFAULT '',
   `PlayerName` varchar(24) NOT NULL DEFAULT '',
   `PlayerSex` int(1) DEFAULT NULL,
   PRIMARY KEY (`PlayerUID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `player_login`;
-CREATE TABLE `player_login` (
+DROP TABLE IF EXISTS `Player_LOGIN`;
+CREATE TABLE `Player_LOGIN` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `PlayerUID` varchar(20) DEFAULT '',
   `CharacterID` int(10) DEFAULT NULL,
