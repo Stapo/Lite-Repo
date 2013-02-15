@@ -1,6 +1,6 @@
 
-DROP TABLE IF EXISTS `character_data`;
-CREATE TABLE `character_data` (
+DROP TABLE IF EXISTS `Character_DATA`;
+CREATE TABLE `Character_DATA` (
   `CharacterID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `PlayerUID` varchar(16) NOT NULL DEFAULT '',
   `Alive` tinyint(1) NOT NULL DEFAULT '1',
@@ -107,8 +107,8 @@ INSERT INTO `object_classes` VALUES ('SUV_TK_EP1', 1.0, 1, '0.1', '[[\"motor\",0
 INSERT INTO `object_classes` VALUES ('HMMWV_DES_EP1_DZ', 0, 0, '.1', '[[\"motor\",0.8],[\"karoserie\",1],[\"palivo\",0.8],[\"wheel_1_1_steering\",1],[\"wheel_2_1_steering\",1],[\"sklo predni P\",1],[\"glass1\",1],[\"glass3\",1]]');
 INSERT INTO `object_classes` VALUES ('S1203_ambulance_EP1', 0, 0, '.1', '[]');
 
-DROP TABLE IF EXISTS `object_data`;
-CREATE TABLE `object_data` (
+DROP TABLE IF EXISTS `Object_DATA`;
+CREATE TABLE `Object_DATA` (
   `ObjectID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ObjectUID` varchar(20) DEFAULT NULL,
   `Instance` varchar(4) DEFAULT NULL,
@@ -913,16 +913,16 @@ INSERT INTO `object_spawns` VALUES ('11832', 'Fishing_Boat', '[180,[7376.2744, 6
 INSERT INTO `object_spawns` VALUES ('11833', 'Fishing_Boat', '[180,[6812.1055, 8167.6162]]', ' Estrella Fishing Boat Spawn 1');
 INSERT INTO `object_spawns` VALUES ('11834', 'Fishing_Boat', '[180,[7364.0693, 8903.5078]]', ' Cedras Fishing Boat Spawn 1');
 
-DROP TABLE IF EXISTS `player_data`;
-CREATE TABLE `player_data` (
+DROP TABLE IF EXISTS `Player_DATA`;
+CREATE TABLE `Player_DATA` (
   `PlayerUID` varchar(20) NOT NULL DEFAULT '',
   `PlayerName` varchar(24) NOT NULL DEFAULT '',
   `PlayerSex` int(1) DEFAULT NULL,
   PRIMARY KEY (`PlayerUID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `player_login`;
-CREATE TABLE `player_login` (
+DROP TABLE IF EXISTS `Player_LOGIN`;
+CREATE TABLE `Player_LOGIN` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `PlayerUID` varchar(20) DEFAULT '',
   `CharacterID` int(10) DEFAULT NULL,

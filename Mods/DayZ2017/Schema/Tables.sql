@@ -1,6 +1,6 @@
 
-DROP TABLE IF EXISTS `character_data`;
-CREATE TABLE `character_data` (
+DROP TABLE IF EXISTS `Character_DATA`;
+CREATE TABLE `Character_DATA` (
   `CharacterID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `PlayerUID` varchar(16) NOT NULL DEFAULT '',
   `Alive` tinyint(1) NOT NULL DEFAULT '1',
@@ -62,8 +62,8 @@ INSERT INTO `object_classes` VALUES ('csj_gyropboat', '0.5', 2, '0', '[]');
 INSERT INTO `object_classes` VALUES ('csj_gyrop', '0.5', 1, '0', '[]');
 INSERT INTO `object_classes` VALUES ('csj_gyroc', '0.5', 1, '0', '');
 
-DROP TABLE IF EXISTS `object_data`;
-CREATE TABLE `object_data` (
+DROP TABLE IF EXISTS `Object_DATA`;
+CREATE TABLE `Object_DATA` (
   `ObjectID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ObjectUID` varchar(20) DEFAULT NULL,
   `Instance` varchar(4) DEFAULT NULL,
@@ -122,16 +122,16 @@ INSERT INTO `object_spawns` VALUES ('522', 'csj_gyrop', '[258,[12338.5,9117.3,0.
 INSERT INTO `object_spawns` VALUES ('523', 'csj_gyroc', '[212,[4815.72,10246.1,0.001]]', 'Near the firestation of the North East Airfield ');
 INSERT INTO `object_spawns` VALUES ('524', 'csj_gyropboat', '[31,[13008,8460.09,0.002]]', '');
 
-DROP TABLE IF EXISTS `player_data`;
-CREATE TABLE `player_data` (
+DROP TABLE IF EXISTS `Player_DATA`;
+CREATE TABLE `Player_DATA` (
   `PlayerUID` varchar(20) NOT NULL DEFAULT '',
   `PlayerName` varchar(24) NOT NULL DEFAULT '',
   `PlayerSex` int(1) DEFAULT NULL,
   PRIMARY KEY (`PlayerUID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `player_login`;
-CREATE TABLE `player_login` (
+DROP TABLE IF EXISTS `Player_LOGIN`;
+CREATE TABLE `Player_LOGIN` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `PlayerUID` varchar(20) DEFAULT '',
   `CharacterID` int(10) DEFAULT NULL,

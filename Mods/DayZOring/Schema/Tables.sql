@@ -1,6 +1,6 @@
 
-DROP TABLE IF EXISTS `character_data`;
-CREATE TABLE `character_data` (
+DROP TABLE IF EXISTS `Character_DATA`;
+CREATE TABLE `Character_DATA` (
   `CharacterID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `PlayerUID` varchar(16) NOT NULL DEFAULT '',
   `Alive` tinyint(1) NOT NULL DEFAULT '1',
@@ -73,8 +73,8 @@ INSERT INTO `object_classes` VALUES ('S1203_TK_CIV_EP1', '0.69', 4, '0.05000', '
 INSERT INTO `object_classes` VALUES ('TT650_TK_CIV_EP1', '0.72', 4, '0.05000', '[]');
 INSERT INTO `object_classes` VALUES ('PBX', '1', 16, '0.05000', '[]');
 
-DROP TABLE IF EXISTS `object_data`;
-CREATE TABLE `object_data` (
+DROP TABLE IF EXISTS `Object_DATA`;
+CREATE TABLE `Object_DATA` (
   `ObjectID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ObjectUID` varchar(20) DEFAULT NULL,
   `Instance` varchar(4) DEFAULT NULL,
@@ -171,16 +171,16 @@ INSERT INTO `object_spawns` VALUES ('70', 'V3S_Civ', '[64,[2970.2014,3495.2651,-
 INSERT INTO `object_spawns` VALUES ('71', 'Volha_2_TK_CIV_EP1', '[204,[899.92743,1880.0015,3.8146973e-005]]', '');
 INSERT INTO `object_spawns` VALUES ('72', 'Volha_2_TK_CIV_EP1', '[356,[7820.2842,2307.7539,1.5258789e-005]]', '');
 
-DROP TABLE IF EXISTS `player_data`;
-CREATE TABLE `player_data` (
+DROP TABLE IF EXISTS `Player_DATA`;
+CREATE TABLE `Player_DATA` (
   `PlayerUID` varchar(20) NOT NULL DEFAULT '',
   `PlayerName` varchar(24) NOT NULL DEFAULT '',
   `PlayerSex` int(1) DEFAULT NULL,
   PRIMARY KEY (`PlayerUID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `player_login`;
-CREATE TABLE `player_login` (
+DROP TABLE IF EXISTS `Player_LOGIN`;
+CREATE TABLE `Player_LOGIN` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `PlayerUID` varchar(20) DEFAULT '',
   `CharacterID` int(10) DEFAULT NULL,

@@ -36,7 +36,7 @@ BEGIN
  
         SET iLID = LAST_INSERT_ID();
  
-        INSERT INTO object_data (ObjectUID, Instance, Classname, Damage, CharacterID, Worldspace, Inventory, Hitpoints, Fuel, Datestamp)
+        INSERT INTO Object_DATA (ObjectUID, Instance, Classname, Damage, CharacterID, Worldspace, Inventory, Hitpoints, Fuel, Datestamp)
         SELECT ot.ObjectUID, '1', ot.Classname, ot.Damage, '0', ot.Worldspace, '[]', ot.Hitpoints, '0.05', SYSDATE()
             FROM (SELECT oc.Classname, oc.Chance, oc.MaxNum, oc.Damage, oc.Hitpoints, os.ObjectUID, os.Worldspace
                 FROM object_classes AS oc
@@ -44,7 +44,7 @@ BEGIN
                 ON oc.Classname = os.Classname
                 ORDER BY RAND()) AS ot
             WHERE NOT EXISTS (SELECT od.ObjectUID
-                            FROM object_data AS od
+                            FROM Object_DATA AS od
                             WHERE ot.ObjectUID = od.ObjectUID)
             AND fGetClassCount(ot.Classname) < ot.MaxNum
             AND fGetSpawnFromChance(ot.Chance) = 1
@@ -68,27 +68,27 @@ BEGIN
  CALL pCleanupOOB();
 
  DELETE
-  FROM object_data 
+  FROM Object_DATA 
   WHERE Damage = '1'; 
 
  DELETE
-  FROM object_data
-  WHERE DATE(object_data.Datestamp) < CURDATE() - INTERVAL 9 DAY
+  FROM Object_DATA
+  WHERE DATE(Object_DATA.Datestamp) < CURDATE() - INTERVAL 9 DAY
    AND CharacterID = 0
    AND (Inventory = '[]'
    OR (Inventory = '[[[],[]],[[],[]],[[],[]]]'
    AND Classname = 'TentStorage'));
 
- UPDATE object_data, character_data
-  SET object_data.characterID = 0, object_data.Datestamp = CURDATE()
-  WHERE object_data.CharacterID = character_data.CharacterID
-   AND character_data.Alive = 0
-   AND DATE(character_data.Datestamp) < CURDATE() - INTERVAL 3 DAY;
+ UPDATE Object_DATA, Character_DATA
+  SET Object_DATA.characterID = 0, Object_DATA.Datestamp = CURDATE()
+  WHERE Object_DATA.CharacterID = Character_DATA.CharacterID
+   AND Character_DATA.Alive = 0
+   AND DATE(Character_DATA.Datestamp) < CURDATE() - INTERVAL 3 DAY;
    
- UPDATE object_data, character_data
-  SET object_data.characterID = 0, object_data.Datestamp = CURDATE()
-  WHERE object_data.CharacterID = character_data.CharacterID
-   AND DATE(character_data.LastLogin) < CURDATE() - INTERVAL 7 DAY;
+ UPDATE Object_DATA, Character_DATA
+  SET Object_DATA.characterID = 0, Object_DATA.Datestamp = CURDATE()
+  WHERE Object_DATA.CharacterID = Character_DATA.CharacterID
+   AND DATE(Character_DATA.LastLogin) < CURDATE() - INTERVAL 7 DAY;
 
 END
 ;;
@@ -108,11 +108,11 @@ BEGIN
  
     SELECT COUNT(*)
         INTO intLineCount
-        FROM object_data;
+        FROM Object_DATA;
  
     SELECT COUNT(*)
         INTO intDummyCount
-        FROM object_data
+        FROM Object_DATA
         WHERE Classname = 'dummy';
  
     WHILE (intLineCount > intDummyCount) DO
@@ -121,7 +121,7 @@ BEGIN
  
         SELECT ObjectUID, Worldspace
             INTO @rsObjectUID, @rsWorldspace
-            FROM object_data
+            FROM Object_DATA
             LIMIT intDoLine, 1;
  
         SELECT REPLACE(@rsWorldspace, '[', '') INTO @rsWorldspace;
@@ -143,7 +143,7 @@ BEGIN
         END IF;
  
         IF (intWest > 0 OR intNorth > 15360) THEN
-            DELETE FROM object_data
+            DELETE FROM Object_DATA
                 WHERE ObjectUID = @rsObjectUID;
         END IF;
        
@@ -188,7 +188,7 @@ BEGIN
 
 	SELECT COUNT(*) 
 		INTO iClassCount 
-		FROM object_data 
+		FROM Object_DATA 
 		WHERE Classname = clname;
 
 	RETURN iClassCount;
@@ -226,8 +226,8 @@ BEGIN
 
  SELECT COUNT(*) 
   INTO iVehCount
-  FROM object_data, object_classes
-  WHERE object_data.Classname = object_classes.Classname;   
+  FROM Object_DATA, object_classes
+  WHERE Object_DATA.Classname = object_classes.Classname;   
 
  RETURN iVehCount;
 END
