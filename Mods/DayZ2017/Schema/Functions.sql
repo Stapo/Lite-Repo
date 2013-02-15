@@ -1,4 +1,3 @@
-
 DROP PROCEDURE IF EXISTS `pMain`;
 DELIMITER ;;
 CREATE PROCEDURE `pMain`()
@@ -10,6 +9,9 @@ BEGIN
 	CALL pFixMaxNum;
 
 	SELECT SUM(MaxNum) FROM object_classes INTO @iMaxNumTotal;
+	IF (ISNULL(@iMaxNumTotal)) THEN
+		SET @iMaxNumTotal = 0;
+	END IF;
 	IF (iSpawnNumVeh > @iMaxNumTotal) THEN
 		SET iSpawnNumVeh = @iMaxNumTotal;
 	END IF;
