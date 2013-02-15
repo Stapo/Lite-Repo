@@ -1,4 +1,3 @@
-
 DROP PROCEDURE IF EXISTS `pMain`;
 DELIMITER ;;
 CREATE PROCEDURE `pMain`()
@@ -9,7 +8,10 @@ BEGIN
 	CALL pCleanup();
 	CALL pFixMaxNum;
 
-	SELECT SUM(MaxNum) FROM object_classes INTO @iMaxNumTotal;
+	SELECT SUM(MaxNum) FROM object_classes WHERE Chance > '0' INTO @iMaxNumTotal;
+	IF (ISNULL(@iMaxNumTotal)) THEN
+		SET @iMaxNumTotal = 0;
+	END IF;
 	IF (iSpawnNumVeh > @iMaxNumTotal) THEN
 		SET iSpawnNumVeh = @iMaxNumTotal;
 	END IF;
@@ -131,11 +133,11 @@ BEGIN
         SELECT INSTR(@North, '-') INTO intNorth;
  
         IF (intNorth = 0) THEN
-            IF (@North = NULL) THEN
+            IF (ISNULL(@North)) THEN
                 SET @North = '';
                 SELECT CONVERT(@North, DECIMAL(16,8)) INTO intNorth;
             END IF;
-            IF (@North != NULL) THEN
+            IF (!ISNULL(@North)) THEN
                 SELECT CONVERT(@North, DECIMAL(16,8)) INTO intNorth;
             END IF;
         END IF;
