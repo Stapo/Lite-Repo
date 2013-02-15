@@ -164,11 +164,11 @@ BEGIN
         SELECT INSTR(@North, '-') INTO intNorth;
  
         IF (intNorth = 0) THEN
-            IF (@North = NULL) THEN
+            IF (ISNULL(@North)) THEN
                 SET @North = '';
                 SELECT CONVERT(@North, DECIMAL(16,8)) INTO intNorth;
             END IF;
-            IF (@North != NULL) THEN
+            IF (!ISNULL(@North))THEN
                 SELECT CONVERT(@North, DECIMAL(16,8)) INTO intNorth;
             END IF;
         END IF;
