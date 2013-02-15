@@ -8,7 +8,7 @@ BEGIN
 	CALL pCleanup();
 	CALL pFixMaxNum;
 
-	SELECT SUM(MaxNum) FROM object_classes WHERE Chance > '0' INTO @iMaxNumTotal;
+	SELECT SUM(MaxNum) FROM object_classes WHERE Chance >= '0.1' INTO @iMaxNumTotal;
 	IF (ISNULL(@iMaxNumTotal)) THEN
 		SET @iMaxNumTotal = 0;
 	END IF;
