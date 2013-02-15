@@ -168,7 +168,7 @@ BEGIN
                 SET @North = '';
                 SELECT CONVERT(@North, DECIMAL(16,8)) INTO intNorth;
             END IF;
-            IF (!ISNULL(@North))THEN
+            IF (!ISNULL(@North)) THEN
                 SELECT CONVERT(@North, DECIMAL(16,8)) INTO intNorth;
             END IF;
         END IF;
